@@ -1,11 +1,11 @@
 #!/bin/bash
-#file sweeps all Ip addresses under 172.20.240.xxx to see which are in use
+#file sweeps all Ip addresses under input xxx.xxx.xxx.--- to see which are in use
 x=$1
 #clear text file before each sweep
 echo "" > octets.txt
 
 #start sweeping through IPs
-for ip in {1..254}
+for ip in {1..255}
 do
     ping $x.$ip -c 1 | grep icmp | cut -d " " -f 4 | uniq | tr -d     ":" | cut -d "." -f 4 >> octets.txt &
 done
